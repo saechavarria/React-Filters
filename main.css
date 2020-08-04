@@ -14,13 +14,21 @@
 .container-fluid {
 	padding: 10px;
 }
-.col-sm {
+.col-md {
 	padding: 10px;
 }
 
 .item {
 	padding: 20px;
 }
+
+.logo {
+	background-color: #25B6FF ;
+	padding: 11px;
+	border-radius: 5px;
+}
+
+
 
 
 

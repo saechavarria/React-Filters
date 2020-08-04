@@ -50,25 +50,28 @@ function Filters (props) {
   return(
     <div className="filters container-fluid ">
       <div className="row"> 
-        <div className="col-sm">
+        <div className="col-md">
           <input className="form-control form-control-lg" type="date" value={dateTodayFilterShow}/> 
         </div>
-        <div className="col-sm">
+        <div className="col-md">
           <input className="form-control form-control-lg" type="date" value={dateToFilterShow}/> 
         </div>
-        <div className="col-sm">
+        <div className="col-md">
           <select class="form-control form-control-lg">
             <option>Todos los paises</option>
             <option>Colombia</option>
+            <option>Argentina</option>
+            <option>Chile</option>
             <option>Brasil</option>
+            <option>Uruguay</option>
           </select>
         </div>
-        <div className="col-sm">
+        <div className="col-md">
           <select class="form-control form-control-lg">
             <option>Cualquier precio</option>
           </select>
         </div>
-        <div className="col-sm">
+        <div className="col-md">
           <select class="form-control form-control-lg">
             <option>Cualquier tamaño</option>
           </select>
@@ -90,8 +93,14 @@ function Cards (props) {
           <div className="card-body">
             <h5 className="card-title">{hotel.name}</h5>
             <p className="card-text">{hotel.description}</p>
+            <div className="">
+              <i class="logo fa fa-globe"></i> {hotel.city}, {hotel.country}
+            </div>
+            <br/>
+            <div className="">
+              <i class="logo fa fa-bed"></i> {hotel.rooms} Habitaciones
+            </div>
           </div>
-
           <div className="card-footer">
             <button type="button" className="btn btn-success">Reservar</button>
           </div>
