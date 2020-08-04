@@ -13,15 +13,9 @@ const dateToday = today.toLocaleDateString("es-ES", optionsHeader);
 //SUMAMOS 10 DÍAS
 const dateTo = today.valueOf() + 864000000;
 
-//ACA SUMO 1 DÍA DEBIDO A QUE CUANDO DOY FORMATO ISO ME SUMA 1 DÍA MAS
-const dateTodayDayLeft = today.valueOf() - 86400000;
-
-//ACA SUMAMOS 9 DÍAS PARA QUE MUESTRA LA FECHA ACTUAL MAS 10 DÍAS.
-const dateToTen = today.valueOf() + 777600000;
-
 //VOLVER A MOSTRAR FORMATO DE DÍA MES AÑO
-const todayShow = new Date(dateTodayDayLeft)
-const toShow = new Date(dateToTen)
+const todayShow = new Date(today)
+const toShow = new Date(dateTo)
 
 //VOLVER A MOSTRAR FORMATO DE DÍA MES AÑO
 const newDateTo = new Date(dateTo);
@@ -29,7 +23,7 @@ const newDateTo = new Date(dateTo);
 //ACA DOY FORMATO DE TEXTO PARA PODERLO MOSTRAR EN HEADER DE LA FECHA HASTA
 const newDateToShow = newDateTo.toLocaleDateString("es-ES", optionsHeader);
 
-//ACA LE DOY FORMAYO ISO PARA PODERLO MOSTRAR EN LOS INPUT
+//ACA LE DOY FORMAYO ISO YYYY-MM-DD PARA PODERLO MOSTRAR EN LOS INPUT
 const dateTodayFilterShow = todayShow.toISOString().split('T')[0];
 const dateToFilterShow =  toShow.toISOString().split('T')[0];
 

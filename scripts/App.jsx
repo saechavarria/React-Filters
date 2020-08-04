@@ -48,33 +48,34 @@ function Filters (props) {
   const hotelsData = props;
   
   return(
-      <div className="filters container-fluid">
-          <div className="row">   
-            <div className="col-sm">
-              <input className="form-control form-control-lg" type="date" value={dateTodayFilterShow}/> 
-            </div>
-            <div className="col-sm">
-              <input className="form-control form-control-lg" type="date" value={dateToFilterShow}/> 
-            </div>
-            <div className="col-sm">
-              <select class="form-control form-control-lg">
-                <option>Todos los paises</option>
-                <option>Colombia</option>
-                <option>Brasil</option>
-              </select>
-            </div>
-            <div className="col-sm">
-              <select class="form-control form-control-lg">
-                <option>Cualquier precio</option>
-              </select>
-            </div>
-            <div className="col-sm">
-              <select class="form-control form-control-lg">
-                <option>Cualquier tamaño</option>
-              </select>
-            </div>
-          </div>
+    <div className="filters container-fluid ">
+      <div className="row"> 
+        <div className="col-sm">
+          <input className="form-control form-control-lg" type="date" value={dateTodayFilterShow}/> 
+        </div>
+        <div className="col-sm">
+          <input className="form-control form-control-lg" type="date" value={dateToFilterShow}/> 
+        </div>
+        <div className="col-sm">
+          <select class="form-control form-control-lg">
+            <option>Todos los paises</option>
+            <option>Colombia</option>
+            <option>Brasil</option>
+          </select>
+        </div>
+        <div className="col-sm">
+          <select class="form-control form-control-lg">
+            <option>Cualquier precio</option>
+          </select>
+        </div>
+        <div className="col-sm">
+          <select class="form-control form-control-lg">
+            <option>Cualquier tamaño</option>
+          </select>
+        </div>
       </div>
+    </div>
+
   )
 }
 
@@ -83,7 +84,7 @@ function Cards (props) {
   const hotelsData = props.hotelsData;
 
   return hotelsData.map( hotel =>
-      <div className="col-4">
+      <div className="item col-md-4 col-sm-6">
         <div className="card">
           <img className="card-img-top" src={hotel.photo} alt="Card image cap"/>
           <div className="card-body">
