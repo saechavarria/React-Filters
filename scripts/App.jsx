@@ -13,8 +13,11 @@ class Header extends React.Component {
   }
   
   render()
-  
+
   {
+
+    //TO DOOOOO  MOSTRAR FECHA HASTA 15 DÍAS DE LA FECHA ACTUAL
+
     return(
       
       //Retorno mi header
@@ -23,13 +26,15 @@ class Header extends React.Component {
           <div className="container-fluid">
             <h4 className="h4-header">Hoteles</h4>
             <br/>
-            <h5 className="h5-header">desde el martes,1 de enero del 2019 hasta el miercoles, 2 de enero de 2019</h5>
+            <h5 className="h5-header">desde { dateToday } hasta { newDateToShow }</h5>
             <br/>
           </div>
         </div>  
          <Filters hotelsData = {hotelsData}/>
-        <div className="row">
+        <div className="container-fluid">
+          <div className="row">  
           <Cards hotelsData = {hotelsData}/>  
+          </div>
         </div>
       </div>
     )
@@ -43,46 +48,39 @@ function Filters (props) {
   const hotelsData = props;
   
   return(
-    <div className="">
-      <div className="filters">
-        <br/>
-        <div className="container-fluid">
+      <div className="filters container-fluid">
           <div className="row">   
-            <div className="col-md">
-              <input className="form-control form-control-lg" type="date"/> 
+            <div className="col-sm">
+              <input className="form-control form-control-lg" type="date" value={dateTodayFilterShow}/> 
             </div>
-            <div className="col-md">
-              <input className="form-control form-control-lg" type="date"/> 
+            <div className="col-sm">
+              <input className="form-control form-control-lg" type="date" value={dateToFilterShow}/> 
             </div>
-            <div className="col-md">
+            <div className="col-sm">
               <select class="form-control form-control-lg">
                 <option>Todos los paises</option>
                 <option>Colombia</option>
                 <option>Brasil</option>
               </select>
             </div>
-            <div className="col-md">
+            <div className="col-sm">
               <select class="form-control form-control-lg">
                 <option>Cualquier precio</option>
               </select>
             </div>
-            <div className="col-md">
+            <div className="col-sm">
               <select class="form-control form-control-lg">
                 <option>Cualquier tamaño</option>
               </select>
             </div>
           </div>
-        </div>
-        <br/>
       </div>
-    </div>
   )
 }
 
 function Cards (props) {
 
   const hotelsData = props.hotelsData;
-  console.log(props)  
 
   return hotelsData.map( hotel =>
       <div className="col-4">

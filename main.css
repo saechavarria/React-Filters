@@ -11,4 +11,16 @@
 	background-color: #25B6FF;
 }
 
+.col-4 {
+	padding: 10px;
+}
+
+.container-fluid {
+	padding: 10px;
+}
+
+.col-sm {
+	padding: 10px;
+}
+
 
