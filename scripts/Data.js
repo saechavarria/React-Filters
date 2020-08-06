@@ -27,6 +27,7 @@ const newDateToShow = newDateTo.toLocaleDateString("es-ES", optionsHeader);
 const dateTodayFilterShow = todayShow.toISOString().split('T')[0];
 const dateToFilterShow =  toShow.toISOString().split('T')[0];
 
+
 const hotelsData = [
   {
     slug: 'la-bamba-de-areco',
