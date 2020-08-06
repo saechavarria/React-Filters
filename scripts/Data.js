@@ -245,3 +245,4 @@ const hotelsData = [
     price: 1
   }
 ]
+

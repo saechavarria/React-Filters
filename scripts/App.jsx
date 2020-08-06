@@ -40,47 +40,57 @@ class Header extends React.Component {
     )
   }
 }
-
-
 //TO DO COMPONETIZAAARRR!!!!
-function Filters (props) {
+class Filters  extends React.Component {
 
-  const hotelsData = props;
+  render() {
+
+    const handleChangeFilter = e => {
+      e.preventDefault();
+      console.log(e.target.value);
+    }
+    
   
-  return(
-    <div className="filters container-fluid ">
-      <div className="row"> 
-        <div className="col-md">
-          <input className="form-control form-control-lg" type="date" value={dateTodayFilterShow}/> 
-        </div>
-        <div className="col-md">
-          <input className="form-control form-control-lg" type="date" value={dateToFilterShow}/> 
-        </div>
-        <div className="col-md">
-          <select class="form-control form-control-lg">
-            <option>Todos los paises</option>
-            <option>Colombia</option>
-            <option>Argentina</option>
-            <option>Chile</option>
-            <option>Brasil</option>
-            <option>Uruguay</option>
-          </select>
-        </div>
-        <div className="col-md">
-          <select class="form-control form-control-lg">
-            <option>Cualquier precio</option>
-          </select>
-        </div>
-        <div className="col-md">
-          <select class="form-control form-control-lg">
-            <option>Cualquier tamaño</option>
-          </select>
+    return(
+      <div className="filters container-fluid ">
+        <div className="row"> 
+          <div className="col-md">
+            <input className="form-control form-control-lg" type="date" value={dateTodayFilterShow} onChange={handleChangeFilter}/> 
+          </div>
+          <div className="col-md">
+            <input className="form-control form-control-lg" type="date" value={dateToFilterShow} onChange={handleChangeFilter}/> 
+          </div>
+          <div className="col-md">
+            <select class="form-control form-control-lg" onChange={handleChangeFilter}>
+              <option>Todos los paises</option>
+              <option>Colombia</option>
+              <option>Argentina</option>
+              <option>Chile</option>
+              <option>Brasil</option>
+              <option>Uruguay</option>
+            </select>
+          </div>
+          <div className="col-md">
+            <select class="form-control form-control-lg" onChange={handleChangeFilter}>
+              <option>Cualquier precio</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+            </select>
+          </div>
+          <div className="col-md">
+            <select class="form-control form-control-lg">
+              <option>Cualquier tamaño</option>
+            </select>
+          </div>
         </div>
       </div>
-    </div>
-
-  )
+    )
+  }
 }
+
+
 
 function Cards (props) {
 
