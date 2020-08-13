@@ -11,9 +11,6 @@
 	background-color: #25B6FF;
 }
 
-.container-fluid {
-	padding: 10px;
-}
 .col-md {
 	padding: 10px;
 }
@@ -26,6 +23,29 @@
 	background-color: #25B6FF ;
 	padding: 11px;
 	border-radius: 5px;
+}
+
+.country {
+	padding: 5px;
+}
+
+.rooms {
+	padding: 5px;
+}
+
+.unChecked {
+	color: gray;
+	padding: 5px;
+}
+
+.checked {
+	color: white;
+	padding: 5px;
+}
+
+.price {
+	padding: 5px;
+	background-color:  #25B6FF ;
 }
 
 
