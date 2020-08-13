@@ -160,6 +160,7 @@ function Filters(props) {
               className="form-control"
               type="date"
               value={props.today.format("YYYY-MM-DD")}
+              min={moment().format("YYYY-MM-DD")}
               onChange={props.filter}
             />
           </div>
@@ -174,6 +175,7 @@ function Filters(props) {
               className="form-control"
               type="date"
               value={props.dayTo.format("YYYY-MM-DD")}
+              min={props.dayTo.format("YYYY-MM-DD")}
               onChange={props.filter}
             />
           </div>
