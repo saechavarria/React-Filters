@@ -7,65 +7,87 @@ function App (){
 }
 
 class Principal extends React.Component {
-  
-  state = {
-    data : hotelsData,
-    hoy : dateTodayFilterShow
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      data : hotelsData,
+      today : moment(),
+      dayTo: moment().add(30,"days"),
+      country: "all",
+      price: "all",
+      rooms: "all",
+    }
   }
   
+
+  filterData = () => {
+    //Destructuring (usar variables locales y no poner this!!!)
+    const { today, dayTo, country, price, rooms } = this.state;
+  
+    const newData = hotelsData.filter(hotel =>{
+
+      return (
+        (hotel.availabilityFrom >= today.valueOf() && hotel.availabilityTo <= dayTo.valueOf() ) && 
+        (country === "all" ? true : hotel.country === country) && 
+        (price === "all" ? true : hotel.price === Number(price)) && 
+        (rooms === "all" ? true :(
+          rooms === "pequeño" ? (hotel.rooms < 10) : 
+          rooms === "mediano" ?( hotel.rooms > 10 && hotel.rooms <= 20) :
+          (hotel.rooms > 20)
+          )
+        )
+      )
+    })
+
+    this.setState({
+      data: newData
+    })
+  }
+  //TOOODOOOOOOOOOOO  HACE QUE FUNCIONE EL FILTROOOOOOOOOOOO.
+  //var newList = [];
+  handleChangeFilter = e => {
+      
+    switch(e.target.id){
+      case 'dateSince':
+        this.setState({
+          today: moment(e.target.value)
+        },() => this.filterData());
+        break;
+      case 'dateTo':
+        this.setState({
+          dayTo: moment(e.target.value)
+        },() => this.filterData());  
+        break;
+      case 'country':
+        this.setState({
+          country: e.target.value
+        },() => this.filterData());
+        break;
+      case 'price':
+        this.setState({
+          price: e.target.value
+        },() => this.filterData());
+        break;
+      case 'rooms':
+        this.setState({
+          rooms: e.target.value
+        },() => this.filterData());
+        break; 
+    }
+
+   // this.setState({
+    //  data: newList
+   // })
+
+  }
+
   render(){
 
-
-    const handleChangeFilter = e => {
-
-      e.preventDefault();
-
-      console.log(e.target.id);
-
-      this.setState({
-       hoy: e.target.value
-      });
-      
-      //Obtengo el valor de la fecha y lo combierto con valueOf() para poder comparar
-      const dateSince = document.getElementById('dateSince').value;
-      const dateSince2 = new Date (dateSince)
-
-      //Obtengo el valor de la fecha y lo combierto con valueOf() para poder comparar
-      const dateTo = document.getElementById('dateTo').value;
-      const dateTo2 = new Date (dateTo)
-
-      //Obtengo el valor del input de las ciudades
-      const country = document.getElementById('country').value;
-
-      //Obtengo el valor del input de las ciudades
-      const price = document.getElementById('price').value;
-
-      //Obtengo el valor del input de las ciudades
-      const rooms = document.getElementById('rooms').value;
-
-
-     // console.log(
-      //  "dateSince: "+dateSince2,
-      //  "dateTo: "+dateTo2,
-      //  "country: "+country,
-      //  "price: "+price,
-     //   "rooms: "+rooms,
-      
-      //)
-        
-     // const prueba = hotelsData.filter(hotels => 
-        
-     // )
-      
-      //this.setState({
-       // data: prueba
-     // });
-
-    }
     return(
       <div>
-        <Header/>
-        <Filters hotelsData = {this.state.data} filter = {handleChangeFilter} hoy = {this.state.hoy}/>
+        <Header today = {this.state.today} dayTo = {this.state.dayTo}/>
+        <Filters hotelsData = {this.state.data} filter = {this.handleChangeFilter} today = {this.state.today} dayTo = {this.state.dayTo}/>
         <div className="container-fluid">
           <div className="row">  
           <Cards hotelsData = {this.state.data} />  
@@ -76,13 +98,13 @@ class Principal extends React.Component {
   }
 }
 
-function Header(){
+function Header(props){
   return(
     <div className="header">
       <div className="container-fluid">
         <h4 className="h4-header">Hoteles</h4>
         <br/>
-        <h5 className="h5-header">desde { dateToday } hasta { newDateToShow }</h5>
+        <h5 className="h5-header">Desde   { props.today.format("dddd[,] DD [de] MMMM [de] YYYY") } hasta {props.dayTo.format("dddd[,] DD [de] MMMM [de] YYYY") }</h5>
         <br/>
       </div>
     </div>  
@@ -95,15 +117,14 @@ function Filters (props) {
       <div className="filters container-fluid ">
         <div className="row"> 
           <div className="col-md">
-            <input id="dateSince" className="form-control form-control-lg" type="date"  value ={props.hoy} onChange={props.filter}/> 
+            <input id="dateSince" className="form-control form-control-lg" type="date" value={props.today.format("YYYY-MM-DD")} onChange={props.filter}/> 
           </div>
           <div className="col-md">
-            <input id="dateTo" className="form-control form-control-lg" type="date" onChange={props.filter}/> 
+            <input id="dateTo" className="form-control form-control-lg" type="date" value={props.dayTo.format("YYYY-MM-DD")} onChange={props.filter}/> 
           </div>
           <div className="col-md">
             <select id="country" class="form-control form-control-lg" onChange={props.filter}>
-              <option>Todos los paises</option>
-              <option value="Colombia">Colombia</option>
+              <option value="all">Todos los Paises</option>
               <option value="Argentina">Argentina</option>
               <option value="Chile">Chile</option>
               <option value="Brasil">Brasil</option>
@@ -112,7 +133,7 @@ function Filters (props) {
           </div>
           <div className="col-md">
             <select id="price" class="form-control form-control-lg" onChange={props.filter}>
-              <option>Cualquier precio</option>
+              <option value="all">Todos los precios</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -121,10 +142,10 @@ function Filters (props) {
           </div>
           <div className="col-md">
             <select id="rooms" class="form-control form-control-lg" onChange={props.filter}>
-              <option>Cualquier tamaño</option>
-              <option value="1">pequeño</option>
-              <option value="2">Mediano</option>
-              <option value="3">Grande</option>
+              <option value="all">Todos los tamaños</option>
+              <option value="pequeño">Pequeño</option>
+              <option value="mediano">Mediano</option>
+              <option value="grande">Grande</option>
             </select>
           </div>
         </div>
@@ -149,6 +170,7 @@ function Cards (props) {
             <div className="">
               <i class="logo fa fa-globe"></i> {hotel.city}, {hotel.country}
             </div>
+            desde: { moment(hotel.availabilityFrom).format("YYYY-MM-DD") } hasta : { moment(hotel.availabilityTo).format("YYYY-MM-DD") }
             <br/>
             <div className="">
               <i class="logo fa fa-bed"></i> {hotel.rooms} Habitaciones

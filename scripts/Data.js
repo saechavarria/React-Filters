@@ -5,27 +5,30 @@
 const today = new Date()
 
 //DECLARO LAS OPCIONES QUE VOY A MOSTRAR CON LA FECHA
-const optionsHeader = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+//const optionsHeader = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
 //ACA DOY FORMATO DE TEXTO PARA PODERLO MOSTRAR EN HEADER
-const dateToday = today.toLocaleDateString("es-ES", optionsHeader);
+//const dateToday = today.toLocaleDateString("es-ES", optionsHeader);
 
 //SUMAMOS 10 DÍAS
-const dateTo = today.valueOf() + 864000000;
+//const dateTo = today.valueOf() + 864000000;
 
 //VOLVER A MOSTRAR FORMATO DE DÍA MES AÑO
-const todayShow = new Date(today)
-const toShow = new Date(dateTo)
+//const todayShow = new Date(today)
+//const toShow = new Date(dateTo)
 
 //VOLVER A MOSTRAR FORMATO DE DÍA MES AÑO
-const newDateTo = new Date(dateTo);
+//const newDateTo = new Date(dateTo);
 
 //ACA DOY FORMATO DE TEXTO PARA PODERLO MOSTRAR EN HEADER DE LA FECHA HASTA
-const newDateToShow = newDateTo.toLocaleDateString("es-ES", optionsHeader);
+//const newDateToShow = newDateTo.toLocaleDateString("es-ES", optionsHeader);
 
 //ACA LE DOY FORMAYO ISO YYYY-MM-DD PARA PODERLO MOSTRAR EN LOS INPUT
-const dateTodayFilterShow = todayShow.toISOString().split('T')[0];
-const dateToFilterShow =  toShow.toISOString().split('T')[0];
+//const dateTodayFilterShow = todayShow.toISOString().split('T')[0];
+//const dateToFilterShow =  toShow.toISOString().split('T')[0];
+
+
+
 
 
 const hotelsData = [
