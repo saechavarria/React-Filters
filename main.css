@@ -1,6 +1,7 @@
 .header {
 	background-color: #2CCFA2;
 }
+
 .h4-header {
 	color: white;
 }
@@ -8,7 +9,7 @@
 	color: white;
 }
 .filters {
-	background-color: #25B6FF;
+	background-color: #297ca5;
 }
 
 .col-md {
@@ -25,6 +26,11 @@
 	border-radius: 5px;
 }
 
+#inputGroup-sizing-sm{
+	color: white ;
+	background-color:  #25B6FF ;
+}
+
 .country {
 	padding: 5px;
 }
@@ -34,7 +40,7 @@
 }
 
 .unChecked {
-	color: gray;
+	color: #c2ccd6;
 	padding: 5px;
 }
 
@@ -48,6 +54,11 @@
 	background-color:  #25B6FF ;
 }
 
+
+.btn {
+	background-color: #2CCFA2;
+	color: white;
+}
 
 
 

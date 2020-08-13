@@ -21,7 +21,7 @@ class Principal extends React.Component {
 
   filterData = () => {
     //Destructuring (usar variables locales y no poner this!!!)
-    const { today, dayTo, country, price, rooms } = this.state;
+    const { data, today, dayTo, country, price, rooms } = this.state;
 
     const newData = hotelsData.filter((hotel) => {
       return (
@@ -39,9 +39,29 @@ class Principal extends React.Component {
       );
     });
 
-    this.setState({
-      data: newData,
-    });
+    if (newData.length === 0) {
+      alert(
+        "Oops!! No se encontraron hoteles según sus preferencias, Itente de nuevo :)"
+      );
+
+      document.getElementById("country").value = "all";
+      document.getElementById("price").value = "all";
+      document.getElementById("rooms").value = "all";
+
+      this.setState({
+        data: hotelsData,
+        today: moment(),
+        dayTo: moment().add(30, "days"),
+        country: "all",
+        price: "all",
+        rooms: "all",
+      });
+      
+    } else {
+      this.setState({
+        data: newData,
+      });
+    }
   };
 
   handleChangeFilter = (e) => {
@@ -216,7 +236,7 @@ function Cards(props) {
   const hotelsData = props.hotelsData;
 
   return hotelsData.map((hotel) => (
-    <div className="item col-md-4 col-sm-6">
+    <div className="item col-xl-3 col-md-6 col-sm-6">
       <div className="card">
         <img className="card-img-top" src={hotel.photo} alt="Card image cap" />
         <div className="card-body">
@@ -233,7 +253,7 @@ function Cards(props) {
           <br />
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-sm">
-              <i class="fas fa-globe-americas" />
+              <i class="fas fa-bed" />
             </span>
             <div className="rooms">{hotel.rooms} Habitaciones</div>
             <div className="price">
@@ -242,7 +262,7 @@ function Cards(props) {
           </div>
         </div>
         <div className="card-footer">
-          <button type="button" className="btn btn-success btn-lg btn-block">
+          <button type="button" className="btn btn-lg btn-block">
             Reservar
           </button>
         </div>
