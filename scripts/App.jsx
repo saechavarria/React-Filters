@@ -8,19 +8,15 @@ class Principal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
+      data: hotelsData,
       today: moment(),
-      dayTo: moment().add(10, "days"),
+      dayTo: moment(),
       country: "all",
       price: "all",
       rooms: "all",
     };
   }
  
-  componentDidMount(){
-    //equisde
-    this.filterData()
-  }
   
   filterData = () => {
     //Destructuring (usar variables locales y no poner this!!!)
@@ -146,7 +142,6 @@ function Filters(props) {
               id="dateSince"
               className="form-control"
               type="date"
-              value={props.today.format("YYYY-MM-DD")}
               min={moment().format("YYYY-MM-DD")}
               onChange={props.filter}
             />
@@ -161,7 +156,6 @@ function Filters(props) {
               id="dateTo"
               className="form-control"
               type="date"
-              value={props.dayTo.format("YYYY-MM-DD")}
               min={moment().format("YYYY-MM-DD")}
               onChange={props.filter}
             />
