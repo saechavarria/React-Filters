@@ -1,8 +1,6 @@
 function App() {
   return (
-    <div>
       <Principal />
-    </div>
   );
 }
 
@@ -10,7 +8,7 @@ class Principal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: hotelsData,
+      data: [],
       today: moment(),
       dayTo: moment().add(30, "days"),
       country: "all",
@@ -108,8 +106,6 @@ class Principal extends React.Component {
         />
         <div className="row">
           {this.state.data.length === 0 ? <Error/> : <Cards hotelsData={this.state.data} />}
-          
-          
         </div>
       </div>
     );
@@ -265,7 +261,7 @@ function Cards(props) {
 function Error() {
   return(
     <div className="item error">
-      <h1>ERROR NO SE ENCONTRARON HOTELES</h1>
+      <h1>NO SE ENCONTRARON HOTELES</h1>
     </div>
   )
 }
