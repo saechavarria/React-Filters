@@ -26,10 +26,8 @@ class Principal extends React.Component {
 
     const newData = hotelsData.filter((hotel) => {
       return (
-        (today === "" ? true : moment(today).format('YYYY-MM-DD') >= moment(hotel.availabilityFrom).format('YYYY-MM-DD') &&
-
-        moment(dayTo).format('YYYY-MM-DD') <=  moment(hotel.availabilityTo).format('YYYY-MM-DD') )  &&
-        
+        (today === "" ? true : moment(today).format('YYYY-MM-DD') >= moment(hotel.availabilityFrom).format('YYYY-MM-DD'))  &&
+        (dayTo === "" ? true :moment(dayTo).format('YYYY-MM-DD') <=  moment(hotel.availabilityTo).format('YYYY-MM-DD') ) &&
         (country === "all" ? true : hotel.country === country) &&
         (price === "all" ? true : hotel.price === Number(price)) &&
         (rooms === "all"
@@ -119,9 +117,9 @@ function Header(props) {
         <br />
         <h5 className="h5-header">
 
-        {props.today === "" ? "hoy" : "Desde"+props.today.format("dddd[,] DD [de] MMMM [de] YYYY")}
+        {props.today === "" ? "Todos los hoteles" : "Desde"+props.today.format("dddd[,] DD [de] MMMM [de] YYYY")}
         
-        {props.dayTo ==="" ? "" : " Hasta"+props.dayTo.format("dddd[,] DD [de] MMMM [de] YYYY")}
+        {props.dayTo ==="" ? "" : " Hasta "+props.dayTo.format("dddd[,] DD [de] MMMM [de] YYYY")}
 
           
         </h5>
