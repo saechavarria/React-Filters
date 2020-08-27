@@ -10,21 +10,23 @@ class Principal extends React.Component {
     this.state = {
       data: [],
       today: moment(),
-      dayTo: moment().add(30, "days"),
+      dayTo: moment().add(10, "days"),
       country: "all",
       price: "all",
       rooms: "all",
     };
   }
-  
-
  
-
+  componentDidMount(){
+    //equisde
+    this.filterData()
+  }
+  
   filterData = () => {
     //Destructuring (usar variables locales y no poner this!!!)
     const { data, today, dayTo, country, price, rooms } = this.state;
     
-
+    console.log("entro")
 
     const newData = hotelsData.filter((hotel) => {
       return (
@@ -53,8 +55,7 @@ class Principal extends React.Component {
       case "dateSince":
         this.setState(
           {
-            today: moment(e.target.value),
-            dayTo: moment(e.target.value).add(30, "days"),
+            today: moment(e.target.value)
           },
           () => this.filterData()
         );
@@ -93,6 +94,7 @@ class Principal extends React.Component {
         break;
     }
   };
+
 
   render() {
     return (
