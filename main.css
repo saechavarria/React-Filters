@@ -60,6 +60,16 @@
 	color: white;
 }
 
+.error {
+	background-color: #f7e881;
+    margin: 30px;
+    float: initial;
+	width: 100%;
+	text-align:center;
+	color:white;
+	border-radius: 10px;
+}
+
 
 
 

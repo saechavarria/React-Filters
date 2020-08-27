@@ -18,11 +18,11 @@ class Principal extends React.Component {
       rooms: "all",
     };
   }
-
+  
   filterData = () => {
     //Destructuring (usar variables locales y no poner this!!!)
     const { data, today, dayTo, country, price, rooms } = this.state;
-
+    
     const newData = hotelsData.filter((hotel) => {
       return (
         hotel.availabilityFrom >= today.valueOf() &&
@@ -38,29 +38,10 @@ class Principal extends React.Component {
           : hotel.rooms > 20)
       );
     });
-
-    if (newData.length === 0) {
-      alert(
-        "Oops!! No se encontraron hoteles según sus preferencias, Itente de nuevo :)"
-      );
-
-      document.getElementById("country").value = "all";
-      document.getElementById("price").value = "all";
-      document.getElementById("rooms").value = "all";
-
-      this.setState({
-        data: hotelsData,
-        today: moment(),
-        dayTo: moment().add(30, "days"),
-        country: "all",
-        price: "all",
-        rooms: "all",
-      });
-    } else {
       this.setState({
         data: newData,
       });
-    }
+    
   };
 
   handleChangeFilter = (e) => {
@@ -69,6 +50,7 @@ class Principal extends React.Component {
         this.setState(
           {
             today: moment(e.target.value),
+            dayTo: moment(e.target.value).add(30, "days"),
           },
           () => this.filterData()
         );
@@ -119,7 +101,9 @@ class Principal extends React.Component {
           dayTo={this.state.dayTo}
         />
         <div className="row">
-          <Cards hotelsData={this.state.data} />
+          {this.state.data.length === 0 ? <Error/> : <Cards hotelsData={this.state.data} />}
+          
+          
         </div>
       </div>
     );
@@ -270,6 +254,14 @@ function Cards(props) {
       </div>
     </div>
   ));
+}
+
+function Error() {
+  return(
+    <div className="item error">
+      <h1>ERROR NO SE ENCONTRARON HOTELES</h1>
+    </div>
+  )
 }
 
 function Price(props) {
