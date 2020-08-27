@@ -19,14 +19,20 @@ class Principal extends React.Component {
     };
   }
   
+
+ 
+
   filterData = () => {
     //Destructuring (usar variables locales y no poner this!!!)
     const { data, today, dayTo, country, price, rooms } = this.state;
     
+
+
     const newData = hotelsData.filter((hotel) => {
       return (
-        hotel.availabilityFrom >= today.valueOf() &&
-        hotel.availabilityTo <= dayTo.valueOf() &&
+        moment(today).format('YYYY-MM-DD') >= moment(hotel.availabilityFrom).format('YYYY-MM-DD') &&
+
+        moment(dayTo).format('YYYY-MM-DD') <=  moment(hotel.availabilityTo).format('YYYY-MM-DD') &&
         (country === "all" ? true : hotel.country === country) &&
         (price === "all" ? true : hotel.price === Number(price)) &&
         (rooms === "all"
