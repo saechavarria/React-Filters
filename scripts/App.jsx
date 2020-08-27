@@ -56,7 +56,6 @@ class Principal extends React.Component {
         price: "all",
         rooms: "all",
       });
-      
     } else {
       this.setState({
         data: newData,
@@ -175,7 +174,7 @@ function Filters(props) {
               className="form-control"
               type="date"
               value={props.dayTo.format("YYYY-MM-DD")}
-              min={props.dayTo.format("YYYY-MM-DD")}
+              min={moment().format("YYYY-MM-DD")}
               onChange={props.filter}
             />
           </div>
@@ -238,7 +237,7 @@ function Cards(props) {
   const hotelsData = props.hotelsData;
 
   return hotelsData.map((hotel) => (
-    <div className="item col-xl-3 col-md-6 col-sm-6">
+    <div className="item col-xl-3 col-md-4 col-sm-6">
       <div className="card">
         <img className="card-img-top" src={hotel.photo} alt="Card image cap" />
         <div className="card-body">
