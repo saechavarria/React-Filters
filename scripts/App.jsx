@@ -8,23 +8,21 @@ class Principal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
+      data: hotelsData,
       today: moment(),
-      dayTo: moment().add(30, "days"),
+      dayTo: moment(),
       country: "all",
       price: "all",
       rooms: "all",
     };
   }
-  
-
  
-
+  
   filterData = () => {
     //Destructuring (usar variables locales y no poner this!!!)
     const { data, today, dayTo, country, price, rooms } = this.state;
     
-
+    console.log("entro")
 
     const newData = hotelsData.filter((hotel) => {
       return (
@@ -53,8 +51,7 @@ class Principal extends React.Component {
       case "dateSince":
         this.setState(
           {
-            today: moment(e.target.value),
-            dayTo: moment(e.target.value).add(30, "days"),
+            today: moment(e.target.value)
           },
           () => this.filterData()
         );
@@ -93,6 +90,7 @@ class Principal extends React.Component {
         break;
     }
   };
+
 
   render() {
     return (
@@ -144,7 +142,6 @@ function Filters(props) {
               id="dateSince"
               className="form-control"
               type="date"
-              value={props.today.format("YYYY-MM-DD")}
               min={moment().format("YYYY-MM-DD")}
               onChange={props.filter}
             />
@@ -159,7 +156,6 @@ function Filters(props) {
               id="dateTo"
               className="form-control"
               type="date"
-              value={props.dayTo.format("YYYY-MM-DD")}
               min={moment().format("YYYY-MM-DD")}
               onChange={props.filter}
             />
