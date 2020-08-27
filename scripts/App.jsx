@@ -117,7 +117,7 @@ function Header(props) {
         <br />
         <h5 className="h5-header">
 
-        {props.today === "" ? "Todos los hoteles" : "Desde"+props.today.format("dddd[,] DD [de] MMMM [de] YYYY")}
+        {props.today === "" ? "Todos los hoteles" : "Desde "+props.today.format("dddd[,] DD [de] MMMM [de] YYYY")}
         
         {props.dayTo ==="" ? "" : " Hasta "+props.dayTo.format("dddd[,] DD [de] MMMM [de] YYYY")}
 
