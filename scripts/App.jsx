@@ -1,9 +1,12 @@
+//VOY A CARGAR EN MI FUNCIÓN App TODA MI APLICACIÓN PARA LUEGO RENDERIZARLA EN EL DOM
+
 function App() {
   return (
       <Principal />
   );
 }
 
+//ACA EN MI CLASE PRINCIPAL VOY A DECLARAR MIS ESTADOS Y MI FUNCIONA DE FILTRADO PARA LUEGO PASARLOS A LOS COMPONENTES HIJOS
 class Principal extends React.Component {
   constructor(props) {
     super(props);
@@ -17,13 +20,11 @@ class Principal extends React.Component {
     };
   }
  
-  
   filterData = () => {
-    //Destructuring (usar variables locales y no poner this!!!)
-    const { data, today, dayTo, country, price, rooms } = this.state;
-    
-    console.log(today)
-
+    //LO SIGUIENTE ES UTILIZAR ES DESTRUCTING PARA NO TENER QUE ESTAS BINDEANDO LOS ESTADOS
+    const {today, dayTo, country, price, rooms } = this.state;
+    //ACA UTILIZO UN FILTER CON CONDICIONES "&&" AUNQUE TAMBIEN SE PODRIA HACER UN CHAIN FILTER QUERIA PROBAR EN HACERLO ASÍ
+    //PORQUE DE ESTA MANERA SOLO VOY A NECESITAR ESTA FUNCIONA PARA MANEJAR CADA VEZ QUE CAMBIEN CUALQUIER FILTRO
     const newData = hotelsData.filter((hotel) => {
       return (
         (today === "" ? true : moment(today).format('YYYY-MM-DD') >= moment(hotel.availabilityFrom).format('YYYY-MM-DD'))  &&
@@ -44,7 +45,7 @@ class Principal extends React.Component {
       });
     
   };
-
+  //CON ESTA FUNCIONA VOY A LLAMAR MI FUNCION FILTER CADA SE CAMBIEN CUALQUIERA DE LOS INPUTS
   handleChangeFilter = (e) => {
     switch (e.target.id) {
       case "dateSince":
@@ -90,7 +91,6 @@ class Principal extends React.Component {
     }
   };
 
-
   render() {
     return (
       <div>
@@ -108,7 +108,8 @@ class Principal extends React.Component {
     );
   }
 }
-
+//EN MI COMPONENTE HEADER SIMPLEMENTE VOY A PINTAR MIS FECHAS DE FORMA BONITA UTILIZANDO MOMENT
+//EN LA LINEA 125 Y 126 CON EL OPERADOR TERNARIO SI MIS ESTADOS DE FECHAS NO ESTAN SELECCIONADOS VOY A MOSTRAR UN MENSAJE PARA QUE LUZCA MEJOR LA APP
 function Header(props) {
   return (
     <div className="header">
@@ -116,20 +117,16 @@ function Header(props) {
         <h4 className="h4-header">Hoteles</h4>
         <br />
         <h5 className="h5-header">
-
         {props.today === "" ? "Todos los hoteles" : "Desde "+props.today.format("dddd[,] DD [de] MMMM [de] YYYY")}
-        
         {props.dayTo ==="" ? "" : " Hasta "+props.dayTo.format("dddd[,] DD [de] MMMM [de] YYYY")}
-
-          
         </h5>
         <br />
       </div>
     </div>
   );
 }
-
-//TO DO COMPONETIZAAARRR!!!!
+//ACA VOY A TENER MIS FILTROS SE PODRIA COMPONETIZAR MAS PERO COMO NO ESTOY UTILIZANDO CRA LO DEJE DE ESTA MANERA PARA TRABAJARLO MAS FACIL
+//PUEDE COSTAR UN POCO ENTENDE EL HTML PERO ES MUY SENCILLO!!
 function Filters(props) {
   return (
     <div className="filters">
@@ -217,8 +214,10 @@ function Filters(props) {
     </div>
   );
 }
-
+//ACA VA ESTA MI COMPONENTE CARD, ESTE ES FACIL DE LEER
+//NOTA: UTILICE BOOTSTRAP PARA REALIZAR LA APP RESPOSIVE Y QUE SEA LINDA XD
 function Cards(props) {
+
   const hotelsData = props.hotelsData;
 
   return hotelsData.map((hotel) => (
@@ -256,7 +255,8 @@ function Cards(props) {
     </div>
   ));
 }
-
+//ESTO ES PARA MOSTAR UN ERROR CUANDO NO SE ENCUENTREN HOTELES
+//EN LA LINEA 109 SE ESTA MANEJANDO ESTA PARTE
 function Error() {
   return(
     <div className="item error">
@@ -264,7 +264,7 @@ function Error() {
     </div>
   )
 }
-
+//ESTE COMPONENTE ES PARA PODER REPRESENTAR DE UNA FORMA VISUAL LOS PRECIOS "$$$$" Y PINTARLOS TAMBIEN BONITOS.
 function Price(props) {
   const priceCheck = (price) => {
     return price <= props.price
@@ -281,5 +281,5 @@ function Price(props) {
     </div>
   );
 }
-
+//ACA PINTO MI COMPONENTE APP QUE TIENE TODA MI APP EN MI HTML
 ReactDOM.render(<App />, document.getElementById("app"));

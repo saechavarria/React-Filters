@@ -1,31 +1,7 @@
-// Definimos los datos estáticos que nuestra aplicación utilizará para funcionar.
-// En una aplicación convencional estos datos provendrían desde un back-end pero a los fines de este ejercicio utilizaremos variables pre-definidas.
-// Utilizamos fechas dinámicas para que la aplicación siempre muestre un rango de días entre la fecha actual y el futuro.
+//EN ESTA ARCHIVO ESTAN LOS DATOS DE LOS HOTELES QUE VOY A MOSTRAR EN MI APP
+
 
 const today = new Date();
-
-//DECLARO LAS OPCIONES QUE VOY A MOSTRAR CON LA FECHA
-//const optionsHeader = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-
-//ACA DOY FORMATO DE TEXTO PARA PODERLO MOSTRAR EN HEADER
-//const dateToday = today.toLocaleDateString("es-ES", optionsHeader);
-
-//SUMAMOS 10 DÍAS
-//const dateTo = today.valueOf() + 864000000;
-
-//VOLVER A MOSTRAR FORMATO DE DÍA MES AÑO
-//const todayShow = new Date(today)
-//const toShow = new Date(dateTo)
-
-//VOLVER A MOSTRAR FORMATO DE DÍA MES AÑO
-//const newDateTo = new Date(dateTo);
-
-//ACA DOY FORMATO DE TEXTO PARA PODERLO MOSTRAR EN HEADER DE LA FECHA HASTA
-//const newDateToShow = newDateTo.toLocaleDateString("es-ES", optionsHeader);
-
-//ACA LE DOY FORMAYO ISO YYYY-MM-DD PARA PODERLO MOSTRAR EN LOS INPUT
-//const dateTodayFilterShow = todayShow.toISOString().split('T')[0];
-//const dateToFilterShow =  toShow.toISOString().split('T')[0];
 
 const hotelsData = [
   {
